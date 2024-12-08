@@ -1,0 +1,7 @@
+<h2>{{ tenant.first_name }} {{ tenant.last_name }}</h2>
+<p>Email: {{ tenant.email }}</p>
+<p>Phone: {{ tenant.phone }}</p>
+<p>Property: {{ tenant.property.name }}</p>
+<p>Lease Start: {{ tenant.lease_start }}</p>
+<p>Lease End: {{ tenant.lease_end }}</p>
+<a href="{% url 'tenant_list' %}">Back to Tenants List</a>

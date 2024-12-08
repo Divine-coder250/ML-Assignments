@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Property List</h1>
+    <a href="{% url 'property_create' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Create New Property</a>
+    <table class="min-w-full bg-white">
+        <thead>
+            <tr class="w-full bg-gray-200 text-left py-2">
+                <th class="py-2 px-4">Name</th>
+                <th class="py-2 px-4">Address</th>
+                <th class="py-2 px-4">Owner</th>
+                <th class="py-2 px-4">Price</th>
+                <th class="py-2 px-4">Description</th>
+                <th class="py-2 px-4">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+            <tr class="border-b">
+                <td class="py-2 px-4">{{ property.name }}</td>
+                <td class="py-2 px-4">{{ property.address }}</td>
+                <td class="py-2 px-4">{{ property.owner }}</td>
+                <td class="py-2 px-4">{{ property.price }}</td>
+                <td class="py-2 px-4">{{ property.description }}</td>
+                <td class="py-2 px-4">
+                    <a href="{% url 'property_update' property.pk %}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">Edit</a>
+                    <a href="{% url 'property_delete' property.pk %}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-6 bg-gray-100">
+
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+        <h1 class="text-2xl font-bold mb-4 text-center">Maintenance Requests</h1>
+
+        <div class="mb-4 text-right">
+            <a href="{% url 'maintenance_create' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Add Maintenance
+            </a>
+        </div>
+
+        <ul class="divide-y divide-gray-200">
+            {% for maintenance in maintenances %}
+            <li class="flex justify-between items-center py-4">
+                <div>
+                    <a href="{% url 'maintenance_detail' maintenance.pk %}" class="text-lg font-semibold text-blue-600 hover:underline">
+                        {{ maintenance.issue }}
+                    </a>
+                    <p class="text-sm text-gray-500">{{ maintenance.status }}</p>
+                </div>
+                <div class="flex space-x-2">
+                    <a href="{% url 'maintenance_update' maintenance.pk %}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">
+                        Edit
+                    </a>
+                    <a href="{% url 'maintenance_delete' maintenance.pk %}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
+                        Delete
+                    </a>
+                </div>
+            </li>
+            {% empty %}
+            <li class="text-center text-gray-500 py-4">No maintenance requests found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl">
+        <h1 class="text-3xl font-semibold text-gray-800 mb-4">{{ maintenance.issue }}</h1>
+
+        <p class="text-lg text-gray-600 mb-4"><strong>Description:</strong> {{ maintenance.description }}</p>
+        <p class="text-lg text-gray-600 mb-4"><strong>Status:</strong> 
+            <span class="font-semibold text-green-600">{{ maintenance.status }}</span>
+        </p>
+        <p class="text-lg text-gray-600 mb-4"><strong>Tenant:</strong> {{ maintenance.tenant }}</p>
+
+        <div class="flex space-x-4 mt-6">
+            <!-- Edit Button -->
+            <a href="{% url 'maintenance_update' maintenance.pk %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
+                Edit
+            </a>
+            
+            <!-- Delete Button -->
+            <a href="{% url 'maintenance_delete' maintenance.pk %}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded">
+                Delete
+            </a>
+
+            <!-- Back Button -->
+            <a href="{% url 'maintenance_list' %}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded">
+                Go Back
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

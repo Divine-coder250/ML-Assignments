@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Deletion</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
+        <h1 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Delete Maintenance Request</h1>
+        
+        <p class="text-lg text-gray-600 mb-4 text-center">Are you sure you want to delete the maintenance issue: 
+            <strong class="text-red-600">{{ maintenance.issue }}</strong>?
+        </p>
+        
+        <form method="post" class="flex justify-between space-x-4">
+            {% csrf_token %}
+            
+            <!-- Confirm button -->
+            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">
+                Yes, Delete
+            </button>
+            
+            <!-- Cancel button -->
+            <a href="{% url 'maintenance_list' %}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto text-center">
+                Cancel
+            </a>
+        </form>
+    </div>
+    
+</body>
+</html>
